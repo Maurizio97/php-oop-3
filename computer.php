@@ -29,7 +29,7 @@
 
         public function checkCar($var){
             if(strlen($var) < 3 || strlen($var) > 20){
-                return throw new Exception($var . "isn't valid");
+                return throw new Exception($var . " isn't valid");
             }
         }
     }
@@ -75,6 +75,9 @@
         }
 
         public function setPrice($price){
+            if(!is_int($price) || $price < 0 || $price > 2000 )
+            throw new Exception("Price isn't valid");
+            else
             $this -> price = $price;
         }
 
@@ -83,6 +86,10 @@
         }
 
         public function setBrand($brand){
+            $val = $this -> checkCar($brand);
+            if($val)
+            return $val;
+            else
             $this -> brand = $brand;
         }
 
@@ -97,7 +104,7 @@
     }
 
     try {
-        $pc = new Computer("123456", 1200);
+        $pc = new Computer("123456", 2000);
 
         $pc -> setBrand("Apple");
         $pc -> setTemplate("MacBook Pro");
