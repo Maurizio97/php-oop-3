@@ -21,7 +21,16 @@
 
 
     <?php
+
+    trait Meth {
+        public function printMe(){
+            echo $this;
+        }
+    }
+
     class Computer{
+        use Meth; 
+
         private $code;
         private $template;
         private $price;
