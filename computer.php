@@ -40,6 +40,28 @@
             $this -> code = $code;
         }
 
-        
+        public function getTemplate(){
+            return $this -> template;
+        }
+
+        public function setTemplate($template){
+            $this -> template = $template;
+        }
+
+        public function getPrice(){
+            return $this -> price;
+        }
+
+        public function setPrice($price){
+            $this -> price = $price;
+        }
+
+        public function getBrand(){
+            return $this -> brand;
+        }
+
+        public function setBrand($brand){
+            $this -> brand = $brand;
+        }
     }
     ?>
