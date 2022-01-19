@@ -24,7 +24,13 @@
 
     trait Meth {
         public function printMe(){
-            echo $this;
+            echo $this . "<br>";
+        }
+
+        public function checkCar($var){
+            if(strlen($var) < 3 || strlen($var) > 20){
+                return throw new Exception($var . "isn't valid");
+            }
         }
     }
 
@@ -46,6 +52,9 @@
         }
 
         public function setCode($code){
+            if(strlen($code) != 6 || !is_numeric($code) )
+            throw new Exception("This code isn't valid");
+            else
             $this -> code = $code;
         }
 
@@ -54,6 +63,10 @@
         }
 
         public function setTemplate($template){
+            $val = $this -> checkCar($template);
+            if($val)
+            return $val;
+            else
             $this -> template = $template;
         }
 
@@ -72,5 +85,27 @@
         public function setBrand($brand){
             $this -> brand = $brand;
         }
+
+        public function __toString(){
+            // "marca modello: prezzo [codice univoco]"
+            echo "Marca:" . $this -> getBrand() . "<br>"
+                . $this -> getTemplate() . ": "
+                . $this -> getPrice() . "$ "
+                . "[" . $this -> getCode() . "]";
+
+        }
     }
+
+    try {
+        $pc = new Computer("123456", 1200);
+
+        $pc -> setBrand("Apple");
+        $pc -> setTemplate("MacBook Pro");
+
+        $pc -> printMe();
+    }catch(Exception $e){
+        echo "<h1>" . $e -> getMessage() ."</h1>";
+    }
+    
+
     ?>
